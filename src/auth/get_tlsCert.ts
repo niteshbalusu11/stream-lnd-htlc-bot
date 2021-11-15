@@ -2,7 +2,7 @@ import { join } from "path";
 import fs from "fs";
 
 import * as dotenv from "dotenv";
-dotenv.config({ path: ".env.local" });
+dotenv.config();
 
 const LND_DIR = process.env.LND_DIR;
 

@@ -16,7 +16,7 @@ const startBot = async () => {
         else {
             chatID = ctx.from.id;
             process.env.CHAT_ID = chatID.toString();
-            bot.api.sendMessage(chatID, "🤖 *Yo! I am ready to send notifications!");
+            bot.api.sendMessage(chatID, "🤖 Yo! I am ready to send notifications!");
         }
     });
     return "Telegram Bot Started, run the /start command";
