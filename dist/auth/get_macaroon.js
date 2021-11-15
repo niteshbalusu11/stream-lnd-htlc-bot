@@ -1,6 +1,6 @@
 import fs from "fs";
 import * as dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: ".env" });
 const environment = process.env.ENVIRONMENT;
 const network = process.env.NETWORK;
 const lnd_dir = process.env.LND_DIR;

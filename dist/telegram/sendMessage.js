@@ -1,7 +1,7 @@
 import { Bot } from "grammy";
 import * as dotenv from "dotenv";
 import data from "./interactions.json";
-dotenv.config({ path: "../../.env.local" });
+dotenv.config({ path: ".env" });
 const sendMessage = async (response, chatID) => {
     let apiKey = process.env.API_KEY;
     if (!apiKey) {

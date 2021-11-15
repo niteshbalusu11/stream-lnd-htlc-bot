@@ -2,7 +2,7 @@ import * as lightning from "lightning";
 import getMac from "./get_macaroon.js";
 import getCert from "./get_tlsCert.js";
 import * as dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: ".env" });
 let lnd = {
     autopilot: undefined,
     chain: undefined,
