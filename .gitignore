@@ -1,0 +1,16 @@
+alice/tls.cert
+alice/tls.key
+alice/data/chain/bitcoin/regtest/admin.macaroon
+alice/data/chain/bitcoin/regtest/chainnotifier.macaroon
+alice/data/chain/bitcoin/regtest/channel.backup
+alice/data/chain/bitcoin/regtest/invoice.macaroon
+alice/data/chain/bitcoin/regtest/invoices.macaroon
+alice/data/chain/bitcoin/regtest/macaroons.db
+alice/data/chain/bitcoin/regtest/readonly.macaroon
+alice/data/chain/bitcoin/regtest/router.macaroon
+alice/data/chain/bitcoin/regtest/signer.macaroon
+alice/data/chain/bitcoin/regtest/wallet.db
+alice/data/chain/bitcoin/regtest/walletkit.macaroon
+alice/data/graph/regtest/channel.db
+alice/data/graph/regtest/sphinxreplay.db
+alice/logs/bitcoin/regtest/lnd.log

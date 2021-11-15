@@ -1,29 +1,15 @@
-import directory from "./lnd_directory.js";
+import fs from "fs";
 import * as dotenv from "dotenv";
-dotenv.config({ path: "../../.env" });
+dotenv.config({ path: ".env" });
 const environment = process.env.ENVIRONMENT;
 const network = process.env.NETWORK;
-console.log(environment);
-const macDirs = "data/chain";
-const macName = "admin.macaroon";
-const path = directory();
-console.log(path);
+const lnd_dir = process.env.LND_DIR;
+const macPath = lnd_dir + "data/chain/" + network + "/" + environment + "/admin.macaroon";
 const getMac = async () => {
-    // const [chains, nets] = defaults;
-    // let macaroon;
-    // let catPath;
-    // const path = directory();
-    // if (!path) {
-    //   return new Error("404-UnableToDirectoryPath");
-    // }
-    // catPath = join(...[path].concat(macPath));
-    // if (fs.existsSync(catPath)) {
-    //   macaroon = fs.readFileSync(catPath, { encoding: "base64" });
-    //   break;
-    // }
-    // if (!macaroon) {
-    //   throw new Error("404-UnableToDirectoryPath");
-    // }
-    // return macaroon;
+    const macaroon = fs.readFileSync(macPath, { encoding: "base64" });
+    if (!macaroon) {
+        throw new Error("404-UnableToDirectoryPath");
+    }
+    return macaroon;
 };
 export default getMac;

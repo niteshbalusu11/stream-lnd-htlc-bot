@@ -1,10 +1,11 @@
-import directory from "./lnd_directory.js";
-const certPath = ["tls.cert"];
 import { join } from "path";
 import fs from "fs";
+import * as dotenv from "dotenv";
+dotenv.config({ path: ".env" });
+const LND_DIR = process.env.LND_DIR;
+const certPath = LND_DIR + "tls.cert";
 const getCert = async () => {
-    const certDir = directory();
-    const cert = fs.readFileSync(join(...[certDir].concat(certPath)), {
+    const cert = fs.readFileSync(join(certPath), {
         encoding: "base64",
     });
     if (!cert) {
