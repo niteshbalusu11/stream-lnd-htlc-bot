@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon dist/index.js"
+    "start": "nodemon --experimental-json-modules dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "dotenv": "^10.0.0",
+    "grammy": "^1.4.0",
     "lightning": "^4.14.3"
   }
 }

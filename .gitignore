@@ -14,3 +14,4 @@ alice/data/chain/bitcoin/regtest/walletkit.macaroon
 alice/data/graph/regtest/channel.db
 alice/data/graph/regtest/sphinxreplay.db
 alice/logs/bitcoin/regtest/lnd.log
+.env.local

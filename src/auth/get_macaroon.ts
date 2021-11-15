@@ -1,6 +1,6 @@
 import fs from "fs";
 import * as dotenv from "dotenv";
-dotenv.config({ path: ".env" });
+dotenv.config({ path: ".env.local" });
 
 const environment = process.env.ENVIRONMENT;
 const network = process.env.NETWORK;
@@ -12,7 +12,7 @@ const macPath =
 const getMac = async () => {
   const macaroon = fs.readFileSync(macPath, { encoding: "base64" });
   if (!macaroon) {
-    throw new Error("404-UnableToDirectoryPath");
+    throw new Error("404-ExpectedMacaroon");
   }
   return macaroon;
 };

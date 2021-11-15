@@ -1,0 +1,8 @@
+{
+    "bot_is_connected": "🤖 Yo! I am ready to send notifications!",
+    "in_peer": "👿 In Peer:",
+    "out_peer": "💀 Out Peer:",
+    "forward_amount": "💰 Forwarded Amount:",
+    "fee": "💲 Potential Lost Fee:",
+    "timestamp": "⌚ Time:"
+}
