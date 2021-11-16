@@ -8,7 +8,7 @@ Get your new telegram bot and API key from BotFather (https://t.me/botfather)
 
 ## Installation
 
-You'll need an active `lnd`, version 0.9.0+ (https://github.com/lightningnetwork/lnd), with routerrpc built in and NodeJS 16.
+You'll need an active `lnd`, version 0.9.0+ (https://github.com/lightningnetwork/lnd), with routerrpc built in and Node.js 16.
 
 Get Node.js 16
 
@@ -58,7 +58,7 @@ y
 To test if it's working run the following command
 
 ```
-node dist/index.js
+npm start
 ```
 
 then run `/start` on telegram and your bot will respond that its ready. If it's working, then `ctrl + c` and you can run any background process manager like tmux, nohup or systemd.
@@ -73,7 +73,7 @@ sudo apt install tmux
 tmux new -s AnySessionNameOfYourChoice
 
 # Run the command again
-node dist/index.js
+npm start
 
 /start on the telegram bot, the bot should respond.
 
