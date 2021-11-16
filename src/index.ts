@@ -12,12 +12,14 @@ sub.on("forward", async (forward) => {
   if (!forward) {
     return;
   }
-
   if (forward.external_failure === "TEMPORARY_CHANNEL_FAILURE") {
     const response = await constructResponse(forward);
     await sendMessage(response, process.env.CHAT_ID!);
   }
-  if (!forward.external_failure) {
+  if (
+    forward.hasOwnProperty("external_failure") &&
+    forward.hasOwnProperty("internal_failure")
+  ) {
     writeToFile(forward);
   }
 });
