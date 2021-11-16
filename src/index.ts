@@ -18,7 +18,7 @@ sub.on("forward", async (forward) => {
     const response = await constructResponse(forward);
     await sendMessage(response, process.env.CHAT_ID!);
   }
-  if (forward.external_failure !== undefined) {
+  if (!forward.external_failure) {
     writeToFile(forward);
   }
 });
