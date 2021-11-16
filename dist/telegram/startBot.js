@@ -1,6 +1,6 @@
 import { Bot } from "grammy";
 import * as dotenv from "dotenv";
-dotenv.config({ path: ".env" });
+dotenv.config({ path: ".env.local" });
 const startBot = async () => {
     let apiKey = process.env.API_KEY;
     if (!apiKey) {

@@ -1,7 +1,7 @@
 import { join } from "path";
 import fs from "fs";
 import * as dotenv from "dotenv";
-dotenv.config({ path: ".env" });
+dotenv.config({ path: ".env.local" });
 const LND_DIR = process.env.LND_DIR;
 const certPath = LND_DIR + "tls.cert";
 const getCert = async () => {

@@ -5,7 +5,7 @@ import getCert from "./get_tlsCert.js";
 import * as dotenv from "dotenv";
 import { AuthenticatedLnd } from "lightning";
 
-dotenv.config({ path: ".env" });
+dotenv.config({ path: ".env.local" });
 
 let lnd: AuthenticatedLnd = {
   autopilot: undefined,
