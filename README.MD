@@ -34,6 +34,7 @@ Change Directory
 cd stream-lnd-htlc-bot
 ```
 
+You will need to create a `.env.local` file that stores some information to run the bot. <br></br>
 Run `cat .env` which gives which shows a sample of how `.env.local` needs to look like. <br></br>
 Replace with your information for `LND_DIR` and `API_KEY`.<br></br>
 `SOCKET` will most likely be the same for most people, in some cases it could be your `tlsextradomain:rpclisten{port}` which can be obtained from your `lnd.conf` file (the file you set your Node's Alias). An example would be `127.66.99.99:10009`
