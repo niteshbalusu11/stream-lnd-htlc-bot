@@ -1,19 +1,19 @@
-import { join } from "path";
+import path from "path";
 import fs from "fs";
 import * as dotenv from "dotenv";
 dotenv.config({ path: ".env.local" });
 
-const LND_DIR = process.env.LND_DIR;
+const lnd_dir = process.env.LND_DIR!;
 
-const certPath = LND_DIR + "tls.cert";
+const certPath = path.join(lnd_dir, "tls.cert");
 
 const getCert = async () => {
-  const cert = fs.readFileSync(join(certPath), {
+  const cert = fs.readFileSync(certPath, {
     encoding: "base64",
   });
 
   if (!cert) {
-    console.log(new Error("404-ExpectedTlsCert"));
+    throw new Error("404-ExpectedTlsCert");
   } else {
     return cert;
   }

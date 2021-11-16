@@ -1,6 +1,6 @@
 import { Bot } from "grammy";
 import * as dotenv from "dotenv";
-import data from "./interactions.json";
+import data from "./parseJSON.js";
 dotenv.config({ path: ".env.local" });
 
 interface Response {
