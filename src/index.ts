@@ -4,6 +4,7 @@ import constructResponse from "./lnd/constructResponse.js";
 import startBot from "./telegram/startBot.js";
 import sendMessage from "./telegram/sendMessage.js";
 import writeToFile from "./telegram/writeToFile.js";
+
 const sub = subscribeToForwards({ lnd });
 
 await startBot();
@@ -16,9 +17,10 @@ sub.on("forward", async (forward) => {
     const response = await constructResponse(forward);
     await sendMessage(response, process.env.CHAT_ID!);
   }
+
   if (
-    forward.hasOwnProperty("external_failure") &&
-    forward.hasOwnProperty("internal_failure")
+    forward.external_failure !== "" &&
+    forward.external_failure !== undefined
   ) {
     writeToFile(forward);
   }
