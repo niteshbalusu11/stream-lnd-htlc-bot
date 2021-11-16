@@ -9,13 +9,15 @@ const sub = subscribeToForwards({ lnd });
 await startBot();
 
 sub.on("forward", async (forward) => {
-  if (!forward || forward.external_failure !== "TEMPORARY_CHANNEL_FAILURE") {
+  if (!forward) {
     return;
   }
 
-  const response = await constructResponse(forward);
-  await sendMessage(response, process.env.CHAT_ID!);
-  // if (!forward.external_failure) {
-  writeToFile(forward);
-  // }
+  if (forward.external_failure === "TEMPORARY_CHANNEL_FAILURE") {
+    const response = await constructResponse(forward);
+    await sendMessage(response, process.env.CHAT_ID!);
+  }
+  if (forward.external_failure === undefined) {
+    writeToFile(forward);
+  }
 });
