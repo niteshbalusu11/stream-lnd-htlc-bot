@@ -9,7 +9,6 @@ const sub = subscribeToForwards({ lnd });
 await startBot();
 
 sub.on("forward", async (forward) => {
-  console.log(forward);
   if (!forward) {
     return;
   }
@@ -18,7 +17,7 @@ sub.on("forward", async (forward) => {
     const response = await constructResponse(forward);
     await sendMessage(response, process.env.CHAT_ID!);
   }
-  if (forward.external_failure !== "undefined") {
+  if (!forward.external_failure) {
     writeToFile(forward);
   }
 });
