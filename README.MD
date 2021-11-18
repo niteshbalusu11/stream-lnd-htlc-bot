@@ -142,3 +142,20 @@ If you want to Stop streamtgbot.service: `sudo systemctl stop streamtgbot.servic
 If you want to Restart streamtgbot.service: `sudo systemctl restart streamtgbot.service`
 
 If you want to Disable streamtgbot.service, stop the bot first with the stop command, then: `sudo systemctl disable streamtgbot.service`
+
+## Updating
+
+```
+# Stop the bot however you're running such as tmux or systemd, instructions to stop are above.
+
+# Change directory to stream-htlc-bot
+cd /path/to/stream-htlc-bot
+
+# Pull the updates
+git pull
+
+# Start again
+npm start
+
+# Start the bot again based on how you're running it and run /start in telegram and the bot will respond that its ready to send notifications.
+```
