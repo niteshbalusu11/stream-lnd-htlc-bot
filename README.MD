@@ -93,11 +93,15 @@ tmux kill-ses -t YourSessionName
 ```
 
 ## Setting up systemd service
+
 Create a new service file, e.g. streamtgbot.service:
+
 ```
 sudo nano /etc/systemd/system/streamtgbot.service
 ```
-Insert the following (edit `WorkingDir`, `User`, `Group` to fit your setup): 
+
+Insert the following (edit `WorkingDir`, `User`, `Group` to fit your setup):
+
 ```
 # Stream-LND-HTLC-Bot: systemd unit
 # /etc/systemd/system/streamtgbot.service
@@ -115,7 +119,7 @@ WorkingDirectory=/your/path/to/stream-lnd-htlc-bot
 ExecStart=/path/to/npm start
 
 User=youruser # replace user
-Group=youruser # replace group 
+Group=youruser # replace group
 
 Restart=always
 TimeoutSec=120
@@ -124,10 +128,17 @@ RestartSec=30
 [Install]
 WantedBy=multi-user.target
 ```
+
 Save and exit (ctrl+o, ctrl+x).
 
 Reload Systemd: `sudo systemctl daemon-reload`
 
 Enable streamtgbot.service: `sudo systemctl enable streamtgbot.service`
 
-Start streamtgbot.service: `sudo systemctl start streamtgbot.service` 
+Start streamtgbot.service: `sudo systemctl start streamtgbot.service`
+
+If you want to Stop streamtgbot.service: `sudo systemctl stop streamtgbot.service`
+
+If you want to Restart streamtgbot.service: `sudo systemctl restart streamtgbot.service`
+
+If you want to Disable streamtgbot.service, stop it first with the stop command, then: `sudo systemctl disable streamtgbot.service`
