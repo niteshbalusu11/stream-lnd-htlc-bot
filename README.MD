@@ -130,4 +130,4 @@ Reload Systemd: `sudo systemctl daemon-reload`
 
 Enable streamtgbot.service: `sudo systemctl enable streamtgbot.service`
 
-Start streamtgbot.service: `sudo systemctl start streamtgbot.service
+Start streamtgbot.service: `sudo systemctl start streamtgbot.service` 
