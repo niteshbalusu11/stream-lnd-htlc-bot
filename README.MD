@@ -91,3 +91,43 @@ d
 tmux ls (this gives list of your active sessions)
 tmux kill-ses -t YourSessionName
 ```
+
+## Setting up systemd service
+Create a new service file, e.g. streamtgbot.service:
+```
+sudo nano /etc/systemd/system/streamtgbot.service
+```
+Insert the following (edit `WorkingDir`, `User`, `Group` to fit your setup): 
+```
+# Stream-LND-HTLC-Bot: systemd unit
+# /etc/systemd/system/streamtgbot.service
+
+[Unit]
+Description=Stream-LND-HTLC-Bot daemon
+Wants=lnd.service
+After=lnd.service
+
+[Service]
+# replace with your path to stream-lnd-htlc-bot
+WorkingDirectory=/your/path/to/stream-lnd-htlc-bot
+
+# find out your installation path of "npm" with "which npm" and replace it here (e.g. /usr/bin/npm or /home/user/.npm-global/bin/npm)
+ExecStart=/path/to/npm start
+
+User=youruser # replace user
+Group=youruser # replace group 
+
+Restart=always
+TimeoutSec=120
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+```
+Save and exit (ctrl+o, ctrl+x).
+
+Reload Systemd: `sudo systemctl daemon-reload`
+
+Enable streamtgbot.service: `sudo systemctl enable streamtgbot.service`
+
+Start streamtgbot.service: `sudo systemctl start streamtgbot.service` 
