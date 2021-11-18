@@ -91,3 +91,27 @@ d
 tmux ls (this gives list of your active sessions)
 tmux kill-ses -t YourSessionName
 ```
+
+## Setting up systemd service
+```
+# Stream-LND-HTLC-Bot: systemd unit
+# /etc/systemd/system/streamtgbot.service
+
+[Unit]
+Description=Stream-LND-HTLC-Bot daemon
+Wants=lnd.service
+After=lnd.service
+
+[Service]
+# replace with your path to stream-lnd-htlc-bot
+WorkingDirectory=/your/path/to/stream-lnd-htlc-bot
+ExecStart=/usr/bin/npm start
+User=hodl
+Group=hodl
+Restart=always
+TimeoutSec=120
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+```
