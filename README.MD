@@ -141,4 +141,4 @@ If you want to Stop streamtgbot.service: `sudo systemctl stop streamtgbot.servic
 
 If you want to Restart streamtgbot.service: `sudo systemctl restart streamtgbot.service`
 
-If you want to Disable streamtgbot.service, stop it first with the stop command, then: `sudo systemctl disable streamtgbot.service`
+If you want to Disable streamtgbot.service, stop the bot first with the stop command, then: `sudo systemctl disable streamtgbot.service`
