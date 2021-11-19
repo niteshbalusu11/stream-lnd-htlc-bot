@@ -156,8 +156,6 @@ cd /path/to/stream-htlc-bot
 # Pull the updates
 git pull
 
-# Start again
-npm start
-
-# Start the bot again based on how you're running it and run /start in telegram and the bot will respond that its ready to send notifications.
+# Start the bot again based on how you're running it and
+run /start in telegram and the bot will respond that its ready to send notifications.
 ```
