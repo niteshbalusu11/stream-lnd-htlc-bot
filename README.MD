@@ -108,18 +108,20 @@ Insert the following (edit `WorkingDir`, `User`, `Group` to fit your setup):
 
 [Unit]
 Description=Stream-LND-HTLC-Bot daemon
-Wants=lnd.service
-After=lnd.service
 
 [Service]
 # replace with your path to stream-lnd-htlc-bot
 WorkingDirectory=/your/path/to/stream-lnd-htlc-bot
 
-# find out your installation path of "npm" with "which npm" and replace it here (e.g. /usr/bin/npm or /home/user/.npm-global/bin/npm)
+# find out your installation path of "npm" by typing terminal command "which npm" and replace it here (e.g. /usr/bin/npm or /home/user/.npm-global/bin/npm)
 ExecStart=/path/to/npm start
 
-User=youruser # replace user
-Group=youruser # replace group
+# replace user. check with terminal command "whoami"
+# e.g. for umbrel: 
+# User=umbrel
+# Group=umbrel
+User=youruser 
+Group=youruser
 
 Restart=always
 TimeoutSec=120
