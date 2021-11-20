@@ -18,7 +18,7 @@ const writeToFile = async (forward: {}) => {
 
 const addData = (forward: {}) => {
   const data = fs.readFileSync(filePath, "utf-8");
-  const json = JSON.stringify(forward);
+  const json = JSON.stringify(forward, null, 4);
   let obj = data + "\n \n" + json;
   fs.writeFileSync(filePath, obj, "utf-8");
 };

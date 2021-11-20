@@ -1,6 +1,6 @@
 import getChannelInfo from "./getChannelinfo.js";
 import getNodeInfo from "./getNodeInfo.js";
-const constructResponse = async (htlc) => {
+const constructDownstreamResponse = async (htlc) => {
     const [inChannelPubkey, outChannelPubkey] = await Promise.all([
         getChannelInfo(htlc.in_channel),
         getChannelInfo(htlc.out_channel),
@@ -16,15 +16,9 @@ const constructResponse = async (htlc) => {
         throw new Error("404-Expected: Alias, Pubkey");
     }
     else {
-        const response = {
-            inNode: inChannelAlias,
-            outNode: outChannelAlias,
-            tokens: htlc.tokens,
-            potential_lost_fee: htlc.fee,
-            failure: htlc.external_failure,
-            timestamp: htlc.at,
-        };
-        return response;
+        htlc.in_channel = inChannelAlias;
+        htlc.out_channel = outChannelAlias;
+        return htlc;
     }
 };
-export default constructResponse;
+export default constructDownstreamResponse;

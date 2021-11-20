@@ -7,7 +7,7 @@ interface Response {
   inNode: string;
   outNode: string;
   tokens: number;
-  fee: number;
+  potential_lost_fee: number;
   failure: string;
   timestamp: Date;
 }
@@ -29,7 +29,7 @@ function constructResponse(response: Response): string {
   const fee = data.fee;
   const tokens = data.forward_amount;
 
-  const html = `<b>Failed Forward: </b>\n\n${timeStamp} ${response.timestamp}\n\n${inPeer} ${response.inNode}\n\n${outPeer} ${response.outNode}\n\n${tokens} ${response.tokens}\n\n${fee} ${response.fee}`;
+  const html = `<b>Failed Forward: </b>\n\n${timeStamp} ${response.timestamp}\n\n${inPeer} ${response.inNode}\n\n${outPeer} ${response.outNode}\n\n${tokens} ${response.tokens}\n\n${fee} ${response.potential_lost_fee}`;
 
   return html;
 }
