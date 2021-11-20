@@ -15,7 +15,11 @@ sub.on("forward", async (forward) => {
     !forward ||
     forward.external_failure === "INCORRECT_OR_UNKNOWN_PAYMENT_DETAILS" ||
     forward.internal_failure === "UNKNOWN_INVOICE" ||
-    forward.is_confirmed
+    forward.is_confirmed ||
+    forward.in_channel === undefined ||
+    !forward.in_channel ||
+    forward.out_channel === undefined ||
+    !forward.out_channel
   ) {
     return;
   } else if (forward.external_failure === "TEMPORARY_CHANNEL_FAILURE") {
