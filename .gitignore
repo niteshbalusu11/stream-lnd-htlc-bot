@@ -16,3 +16,4 @@ alice/data/graph/regtest/sphinxreplay.db
 alice/logs/bitcoin/regtest/lnd.log
 .env.local
 failurelogs.json
+failurelogs.db

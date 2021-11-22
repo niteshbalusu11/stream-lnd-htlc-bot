@@ -1,10 +1,11 @@
 import { subscribeToForwards } from "lightning";
 import { lnd } from "./auth/authentication.js";
-import constructResponse from "./lnd/constructResponse.js";
 import startBot from "./telegram/startBot.js";
 import sendMessage from "./telegram/sendMessage.js";
 import writeToFile from "./telegram/writeToFile.js";
 import constructDownstreamResponse from "./lnd/constructDownstreamResponse.js";
+import createDB from "./sqllite/createDB.js";
+import insertRecords from "./sqllite/insertRecords.js";
 const sub = subscribeToForwards({ lnd });
 await startBot();
 sub.on("forward", async (forward) => {
@@ -19,13 +20,17 @@ sub.on("forward", async (forward) => {
         return;
     }
     else if (forward.external_failure === "TEMPORARY_CHANNEL_FAILURE") {
-        const response = await constructResponse(forward);
-        writeToFile(response);
-        await sendMessage(response, process.env.CHAT_ID);
+        const downStreamresponse = await constructDownstreamResponse(forward);
+        writeToFile(downStreamresponse);
+        const dbReturn = await createDB();
+        await insertRecords(dbReturn, downStreamresponse);
+        await sendMessage(downStreamresponse, process.env.CHAT_ID);
     }
     else if (forward.internal_failure === "" ||
         forward.internal_failure === undefined) {
-        const response = await constructDownstreamResponse(forward);
-        writeToFile(response);
+        const downStreamresponse = await constructDownstreamResponse(forward);
+        writeToFile(downStreamresponse);
+        const dbReturn = await createDB();
+        await insertRecords(dbReturn, downStreamresponse);
     }
 });

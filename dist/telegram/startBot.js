@@ -9,6 +9,10 @@ const startBot = async () => {
     }
     const bot = new Bot(apiKey);
     console.log("Bot connected, start it by running /start on telegram");
+    await bot.api.setMyCommands([
+        { command: "start", description: "Start the bot" },
+        { command: "report", description: "Generates a failure report" },
+    ]);
     bot.start();
     let chatID;
     bot.command("start", async (ctx) => {
@@ -20,6 +24,11 @@ const startBot = async () => {
             process.env.CHAT_ID = chatID.toString();
             bot.api.sendMessage(chatID, data.bot_is_connected);
         }
+    });
+    bot.command("report", async (ctx) => {
+        // let failureData = await readFailures();
+        // const buildChart = await chart(failureData);
+        bot.api.sendMessage(chatID, "yo sup!");
     });
 };
 export default startBot;

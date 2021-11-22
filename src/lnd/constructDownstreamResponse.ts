@@ -1,12 +1,8 @@
 import getChannelInfo from "./getChannelinfo.js";
 import getNodeInfo from "./getNodeInfo.js";
+import { Forward } from "../utils/typeExport.js";
 
-interface HtlcObjects {
-  in_channel: string;
-  out_channel: string;
-}
-
-const constructDownstreamResponse = async (htlc: HtlcObjects) => {
+const constructDownstreamResponse = async (htlc: Forward) => {
   const [inChannelPubkey, outChannelPubkey] = await Promise.all([
     getChannelInfo(htlc.in_channel),
     getChannelInfo(htlc.out_channel),
@@ -25,8 +21,13 @@ const constructDownstreamResponse = async (htlc: HtlcObjects) => {
   ) {
     throw new Error("404-Expected: Alias, Pubkey");
   } else {
-    htlc.in_channel = inChannelAlias;
-    htlc.out_channel = outChannelAlias;
+    if (htlc.external_failure !== "TEMPORARY_CHANNEL_FAILURE") {
+      htlc.external_failure = "DOWNSTREAM_FAILURE";
+    }
+    htlc.in_channel_alias = inChannelAlias;
+    htlc.out_channel_alias = outChannelAlias;
+    htlc.in_pubkey = inChannelPubkey;
+    htlc.out_pubkey = outChannelPubkey;
     return htlc;
   }
 };

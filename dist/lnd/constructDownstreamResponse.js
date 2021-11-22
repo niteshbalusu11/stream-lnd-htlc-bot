@@ -16,8 +16,13 @@ const constructDownstreamResponse = async (htlc) => {
         throw new Error("404-Expected: Alias, Pubkey");
     }
     else {
-        htlc.in_channel = inChannelAlias;
-        htlc.out_channel = outChannelAlias;
+        if (htlc.external_failure !== "TEMPORARY_CHANNEL_FAILURE") {
+            htlc.external_failure = "DOWNSTREAM_FAILURE";
+        }
+        htlc.in_channel_alias = inChannelAlias;
+        htlc.out_channel_alias = outChannelAlias;
+        htlc.in_pubkey = inChannelPubkey;
+        htlc.out_pubkey = outChannelPubkey;
         return htlc;
     }
 };

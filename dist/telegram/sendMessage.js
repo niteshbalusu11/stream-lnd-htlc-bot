@@ -17,7 +17,7 @@ function constructResponse(response) {
     const timeStamp = data.timestamp;
     const fee = data.fee;
     const tokens = data.forward_amount;
-    const html = `<b>Failed Forward: </b>\n\n${timeStamp} ${response.timestamp}\n\n${inPeer} ${response.inNode}\n\n${outPeer} ${response.outNode}\n\n${tokens} ${response.tokens}\n\n${fee} ${response.potential_lost_fee}`;
+    const html = `<b>Failed Forward: </b>\n\n${timeStamp} ${response.at}\n\n${inPeer} ${response.in_channel_alias}\n\n${outPeer} ${response.out_channel_alias}\n\n${tokens} ${response.tokens}\n\n${fee} ${response.fee}`;
     return html;
 }
 export default sendMessage;
