@@ -1,6 +1,9 @@
-import { Bot } from "grammy";
+import { Bot, InputFile } from "grammy";
 import * as dotenv from "dotenv";
 import data from "./parseJSON.js";
+import chart from "../chart/chart.js";
+import sendImages from "./sendPDF.js";
+import fs from "fs";
 dotenv.config({ path: ".env.local" });
 const startBot = async () => {
     let apiKey = process.env.API_KEY;
@@ -26,9 +29,14 @@ const startBot = async () => {
         }
     });
     bot.command("report", async (ctx) => {
-        // let failureData = await readFailures();
-        // const buildChart = await chart(failureData);
-        bot.api.sendMessage(chatID, "yo sup!");
+        let [inTempRender, outTempRender, inDownRender, outDownRender] = await chart();
+        await sendImages(inTempRender, outTempRender, inDownRender, outDownRender, chatID, apiKey);
+        await ctx.replyWithDocument(new InputFile("./output.pdf"));
+        fs.unlinkSync("./example1.png");
+        fs.unlinkSync("./example2.png");
+        fs.unlinkSync("./example3.png");
+        fs.unlinkSync("./example4.png");
+        fs.unlinkSync("./output.pdf");
     });
 };
 export default startBot;

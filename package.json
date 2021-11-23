@@ -34,6 +34,7 @@
     "chartjs-node-canvas": "^4.1.4",
     "dotenv": "^10.0.0",
     "grammy": "^1.4.0",
+    "images-to-pdf": "^1.0.3",
     "lightning": "^4.14.3",
     "sqlite": "^4.0.23",
     "sqlite3": "^5.0.2"

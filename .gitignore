@@ -17,3 +17,8 @@ alice/logs/bitcoin/regtest/lnd.log
 .env.local
 failurelogs.json
 failurelogs.db
+example1.png
+example2.png
+example3.png
+example4.png
+output.pdf

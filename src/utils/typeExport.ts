@@ -21,31 +21,3 @@ export type FailureFileData = {
     failure: string;
   };
 };
-export type TempFailures = {
-  tempChannelFailures: {
-    at: Date;
-    inchannel: string;
-    outchanne: string;
-    tokens: number;
-    fee: number;
-    failure: string;
-  }[];
-};
-
-export type DownFailures = {
-  downstreamFailures: {
-    at: Date;
-    inchannel: string;
-    outchanne: string;
-    tokens: number;
-    fee: number;
-    failure: string;
-  }[];
-};
-
-export type FailureData = {
-  returnValue: {
-    tempFailures: TempFailures;
-    downFailures: DownFailures;
-  };
-};

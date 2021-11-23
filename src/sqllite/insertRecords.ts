@@ -1,12 +1,11 @@
 import { Forward } from "../utils/typeExport";
 
 const insertRecords = async (dbReturn: any, downStreamresponse: Forward) => {
-  const tempFailuresTable = dbReturn[0];
-  const downFailuresTable = dbReturn[1];
+  const tempFailuresTable = dbReturn[1];
+  const downFailuresTable = dbReturn[2];
 
   if (downStreamresponse.external_failure == "TEMPORARY_CHANNEL_FAILURE") {
     await tempFailuresTable.run(
-      downStreamresponse.at,
       downStreamresponse.in_channel,
       downStreamresponse.out_channel,
       downStreamresponse.in_pubkey,
@@ -19,7 +18,6 @@ const insertRecords = async (dbReturn: any, downStreamresponse: Forward) => {
     );
   } else if (downStreamresponse.external_failure === "DOWNSTREAM_FAILURE") {
     await downFailuresTable.run(
-      downStreamresponse.at,
       downStreamresponse.in_channel,
       downStreamresponse.out_channel,
       downStreamresponse.in_pubkey,
