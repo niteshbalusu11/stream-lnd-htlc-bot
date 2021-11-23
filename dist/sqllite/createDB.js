@@ -1,6 +1,4 @@
 import path, { dirname } from "path";
-import { reportError } from "../utils/errorlogging.js";
-import { getErrorMessage } from "../utils/errorlogging.js";
 import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 const createDB = async () => {
@@ -18,7 +16,7 @@ const createDB = async () => {
         }
     }
     catch (error) {
-        reportError({ message: getErrorMessage(error) });
+        console.error(error);
     }
 };
 const createTables = async (db) => {

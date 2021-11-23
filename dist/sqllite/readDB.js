@@ -18,12 +18,6 @@ const readDB = async () => {
     const out_downChannelResult = await db[0].all(out_downstream_failures);
     const out_downChannelResultJSON = JSON.stringify(out_downChannelResult);
     const out_downChannelResultParsedJSON = JSON.parse(out_downChannelResultJSON);
-    // console.log(
-    //   in_tempChannelResultParsedJSON,
-    //   in_downChannelResultParsedJSON,
-    //   out_tempChannelResultParsedJSON,
-    //   out_downChannelResultParsedJSON
-    // );
     return [
         in_tempChannelResultParsedJSON,
         in_downChannelResultParsedJSON,
