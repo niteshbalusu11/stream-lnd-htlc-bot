@@ -8,9 +8,7 @@ const sendImages = async (
   inTempRender: Buffer,
   outTempRender: Buffer,
   inDownRender: Buffer,
-  outDownRender: Buffer,
-  chatID: number,
-  apiKey: string | undefined
+  outDownRender: Buffer
 ) => {
   const fileName = [
     "./example1.png",

@@ -1,8 +1,5 @@
 import { ChartCallback, ChartJSNodeCanvas } from "chartjs-node-canvas";
-import fs from "fs";
-import path, { dirname } from "path";
 import { ChartConfiguration } from "chart.js";
-import chart from "./chart.js";
 
 const renderChart = async (
   failureAlias: [],

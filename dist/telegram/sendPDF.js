@@ -2,7 +2,7 @@ import fs from "fs";
 import * as dotenv from "dotenv";
 import imagesToPdf from "images-to-pdf";
 dotenv.config({ path: ".env.local" });
-const sendImages = async (inTempRender, outTempRender, inDownRender, outDownRender, chatID, apiKey) => {
+const sendImages = async (inTempRender, outTempRender, inDownRender, outDownRender) => {
     const fileName = [
         "./example1.png",
         "./example2.png",

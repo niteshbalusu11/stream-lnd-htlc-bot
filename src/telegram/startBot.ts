@@ -36,14 +36,7 @@ const startBot = async () => {
     let [inTempRender, outTempRender, inDownRender, outDownRender]: Buffer[] =
       await chart();
 
-    await sendImages(
-      inTempRender,
-      outTempRender,
-      inDownRender,
-      outDownRender,
-      chatID,
-      apiKey
-    );
+    await sendImages(inTempRender, outTempRender, inDownRender, outDownRender);
     ctx.replyWithChatAction("typing");
     await ctx.replyWithDocument(new InputFile("./output.pdf"));
 

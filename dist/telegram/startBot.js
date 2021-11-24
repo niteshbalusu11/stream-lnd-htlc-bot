@@ -31,7 +31,7 @@ const startBot = async () => {
     });
     bot.command("report", async (ctx) => {
         let [inTempRender, outTempRender, inDownRender, outDownRender] = await chart();
-        await sendImages(inTempRender, outTempRender, inDownRender, outDownRender, chatID, apiKey);
+        await sendImages(inTempRender, outTempRender, inDownRender, outDownRender);
         ctx.replyWithChatAction("typing");
         await ctx.replyWithDocument(new InputFile("./output.pdf"));
         fs.unlinkSync("./example1.png");
