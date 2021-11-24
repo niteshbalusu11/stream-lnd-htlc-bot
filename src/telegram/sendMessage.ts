@@ -4,15 +4,6 @@ import data from "./parseJSON.js";
 import { Forward } from "../utils/typeExport.js";
 dotenv.config({ path: ".env.local" });
 
-interface Response {
-  inNode: string;
-  outNode: string;
-  tokens: number;
-  potential_lost_fee: number;
-  failure: string;
-  timestamp: Date;
-}
-
 const sendMessage = async (response: Forward, chatID: string) => {
   let apiKey = process.env.API_KEY;
   if (!apiKey) {

@@ -2,10 +2,10 @@ import createDB from "./createDB.js";
 const readDB = async () => {
     const db = await createDB();
     const in_peer = "alice";
-    const in_temp_channel_failures = "SELECT *, count(in_pubkey) FROM temp_channel_failures group by in_pubkey";
-    const in_downstream_failures = "SELECT *, count(in_pubkey) FROM downstream_failures group by in_pubkey";
-    const out_temp_channel_failures = "SELECT *, count(out_pubkey) FROM temp_channel_failures group by out_pubkey";
-    const out_downstream_failures = "SELECT *, count(out_pubkey) FROM downstream_failures group by out_pubkey";
+    const in_temp_channel_failures = "SELECT *, count(in_pubkey) FROM temp_channel_failures WHERE failure_time BETWEEN datetime('now', '-6 days') AND datetime('now', 'utc') group by in_pubkey";
+    const in_downstream_failures = "SELECT *, count(in_pubkey) FROM downstream_failures WHERE failure_time BETWEEN datetime('now', '-6 days') AND datetime('now', 'utc') group by in_pubkey";
+    const out_temp_channel_failures = "SELECT *, count(out_pubkey) FROM temp_channel_failures WHERE failure_time BETWEEN datetime('now', '-6 days') AND datetime('now', 'utc') group by out_pubkey";
+    const out_downstream_failures = "SELECT *, count(out_pubkey) FROM downstream_failures WHERE failure_time BETWEEN datetime('now', '-6 days') AND datetime('now', 'utc') group by out_pubkey";
     const in_tempChannelResult = await db[0].all(in_temp_channel_failures);
     const in_tempChannelResultJSON = JSON.stringify(in_tempChannelResult);
     const in_tempChannelResultParsedJSON = JSON.parse(in_tempChannelResultJSON);

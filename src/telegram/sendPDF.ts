@@ -1,5 +1,4 @@
 import fs from "fs";
-import { Bot, InputFile } from "grammy";
 import * as dotenv from "dotenv";
 import imagesToPdf from "images-to-pdf";
 

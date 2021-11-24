@@ -16,7 +16,7 @@ const startBot = async () => {
   console.log("Bot connected, start it by running /start on telegram");
   await bot.api.setMyCommands([
     { command: "start", description: "Start the bot" },
-    { command: "report", description: "Generates a failure report" },
+    // { command: "report", description: "Generates a failure report" },
   ]);
   bot.start();
 
@@ -25,31 +25,33 @@ const startBot = async () => {
     if (typeof ctx?.from?.id !== "number") {
       throw new Error("404-NeedUserID");
     } else {
+      ctx.replyWithChatAction("typing");
       chatID = ctx.from.id;
       process.env.CHAT_ID = chatID.toString();
       bot.api.sendMessage(chatID, data.bot_is_connected);
     }
   });
 
-  bot.command("report", async (ctx) => {
-    let [inTempRender, outTempRender, inDownRender, outDownRender]: Buffer[] =
-      await chart();
+  // bot.command("report", async (ctx) => {
+  //   let [inTempRender, outTempRender, inDownRender, outDownRender]: Buffer[] =
+  //     await chart();
 
-    await sendImages(
-      inTempRender,
-      outTempRender,
-      inDownRender,
-      outDownRender,
-      chatID,
-      apiKey
-    );
-    await ctx.replyWithDocument(new InputFile("./output.pdf"));
+  //   await sendImages(
+  //     inTempRender,
+  //     outTempRender,
+  //     inDownRender,
+  //     outDownRender,
+  //     chatID,
+  //     apiKey
+  //   );
+  //   ctx.replyWithChatAction("typing");
+  //   await ctx.replyWithDocument(new InputFile("./output.pdf"));
 
-    fs.unlinkSync("./example1.png");
-    fs.unlinkSync("./example2.png");
-    fs.unlinkSync("./example3.png");
-    fs.unlinkSync("./example4.png");
-    fs.unlinkSync("./output.pdf");
-  });
+  //   fs.unlinkSync("./example1.png");
+  //   fs.unlinkSync("./example2.png");
+  //   fs.unlinkSync("./example3.png");
+  //   fs.unlinkSync("./example4.png");
+  //   fs.unlinkSync("./output.pdf");
+  // });
 };
 export default startBot;
