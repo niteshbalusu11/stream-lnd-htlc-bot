@@ -16,7 +16,6 @@ const readDB = async () => {
     "SELECT *, count(out_pubkey) FROM downstream_failures WHERE failure_time BETWEEN datetime('now', '-6 days') AND datetime('now', 'utc') group by out_pubkey";
 
   const in_tempChannelResult = await db[0].all(in_temp_channel_failures);
-  console.log(in_tempChannelResult);
 
   const in_tempChannelResultJSON = JSON.stringify(in_tempChannelResult);
 
