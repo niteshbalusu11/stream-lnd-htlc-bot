@@ -1,9 +1,6 @@
-import { Bot, InputFile } from "grammy";
+import { Bot } from "grammy";
 import * as dotenv from "dotenv";
 import data from "./parseJSON.js";
-import chart from "../chart/chart.js";
-import sendImages from "./sendPDF.js";
-import fs from "fs";
 
 dotenv.config({ path: ".env.local" });
 
@@ -16,7 +13,6 @@ const startBot = async () => {
   console.log("Bot connected, start it by running /start on telegram");
   await bot.api.setMyCommands([
     { command: "start", description: "Start the bot" },
-    { command: "report", description: "Generates a failure report" },
   ]);
   bot.start();
 
@@ -30,21 +26,6 @@ const startBot = async () => {
       process.env.CHAT_ID = chatID.toString();
       bot.api.sendMessage(chatID, data.bot_is_connected);
     }
-  });
-
-  bot.command("report", async (ctx) => {
-    let [inTempRender, outTempRender, inDownRender, outDownRender]: Buffer[] =
-      await chart();
-
-    await sendImages(inTempRender, outTempRender, inDownRender, outDownRender);
-    ctx.replyWithChatAction("typing");
-    await ctx.replyWithDocument(new InputFile("./output.pdf"));
-
-    fs.unlinkSync("./example1.png");
-    fs.unlinkSync("./example2.png");
-    fs.unlinkSync("./example3.png");
-    fs.unlinkSync("./example4.png");
-    fs.unlinkSync("./output.pdf");
   });
 };
 export default startBot;
