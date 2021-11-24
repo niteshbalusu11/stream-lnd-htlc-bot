@@ -31,8 +31,8 @@ if (connectionVerification == "Connection Successful") {
     } else if (forward.external_failure === "TEMPORARY_CHANNEL_FAILURE") {
       const downStreamresponse = await constructDownstreamResponse(forward);
       writeToFile(downStreamresponse);
-      // const dbReturn: any = await createDB();
-      // await insertRecords(dbReturn, downStreamresponse);
+      const dbReturn: any = await createDB();
+      await insertRecords(dbReturn, downStreamresponse);
       await sendMessage(downStreamresponse, process.env.CHAT_ID!);
     } else if (
       forward.internal_failure === "" ||
@@ -40,8 +40,8 @@ if (connectionVerification == "Connection Successful") {
     ) {
       const downStreamresponse = await constructDownstreamResponse(forward);
       writeToFile(downStreamresponse);
-      // const dbReturn: any = await createDB();
-      // await insertRecords(dbReturn, downStreamresponse);
+      const dbReturn: any = await createDB();
+      await insertRecords(dbReturn, downStreamresponse);
     }
   });
 }
