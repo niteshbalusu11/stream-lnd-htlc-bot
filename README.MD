@@ -39,6 +39,8 @@ Run `cat .env` which gives which shows a sample of how `.env.local` needs to loo
 Replace with your information for `LND_DIR` and `API_KEY`.<br></br>
 `SOCKET` will most likely be the same for most people, in some cases it could be your `tlsextradomain:rpclisten{port}` which can be obtained from your `lnd.conf` file (the file you set your Node's Alias). An example would be `127.66.99.99:10009`
 <br></br>
+For Umbrel users, your socket might be `umbrel.local:10009`
+<br></br>
 
 For `ENVIRONMENT` you can replace with `testnet` `regtest` `signet` etc if you want to test in lower environments. `network` also supports `litecoin` if you're into that shit.
 
@@ -117,10 +119,10 @@ WorkingDirectory=/your/path/to/stream-lnd-htlc-bot
 ExecStart=/path/to/npm start
 
 # replace user. check with terminal command "whoami"
-# e.g. for umbrel: 
+# e.g. for umbrel:
 # User=umbrel
 # Group=umbrel
-User=youruser 
+User=youruser
 Group=youruser
 
 Restart=always
