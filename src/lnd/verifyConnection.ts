@@ -9,7 +9,7 @@ const verifyConnection = async () => {
       return "Connection Successful";
     }
   } catch (error: any) {
-    throw new Error(error);
+    throw new Error("500-Unable to Connect to LND");
   }
 };
 
