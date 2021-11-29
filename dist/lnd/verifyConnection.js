@@ -8,7 +8,7 @@ const verifyConnection = async () => {
         }
     }
     catch (error) {
-        throw new Error(error);
+        throw new Error("500-Unable to Connect to LND");
     }
 };
 export default verifyConnection;
