@@ -133,7 +133,6 @@ RestartSec=30
 ProtectSystem=full
 NoNewPrivileges=true
 PrivateDevices=true
-MemoryDenyWriteExecute=true
 
 [Install]
 WantedBy=multi-user.target
