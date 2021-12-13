@@ -115,19 +115,24 @@ Description=Stream-LND-HTLC-Bot daemon
 # replace with your path to stream-lnd-htlc-bot
 WorkingDirectory=/your/path/to/stream-lnd-htlc-bot
 
-# find out your installation path of "npm" by typing terminal command "which npm" and replace it here (e.g. /usr/bin/npm or /home/user/.npm-global/bin/npm)
+# find out your installation path of "npm" by typing command "which npm" in console and replace it below (e.g. /usr/bin/npm or /home/user/.npm-global/bin/npm)
 ExecStart=/path/to/npm start
 
-# replace user. check with terminal command "whoami"
-# e.g. for umbrel:
+# replace user. check with terminal command "whoami", e.g. for umbrel:
 # User=umbrel
 # Group=umbrel
 User=youruser
 Group=youruser
 
-Restart=always
+Type=simple
+Restart=on-failure
 TimeoutSec=120
 RestartSec=30
+
+# Hardening
+ProtectSystem=full
+NoNewPrivileges=true
+PrivateDevices=true
 
 [Install]
 WantedBy=multi-user.target
@@ -137,15 +142,15 @@ Save and exit (ctrl+o, ctrl+x).
 
 Reload Systemd: `sudo systemctl daemon-reload`
 
-Enable streamtgbot.service: `sudo systemctl enable streamtgbot.service`
+Enable streamtgbot: `sudo systemctl enable streamtgbot` (to automatically start on system boot)
 
-Start streamtgbot.service: `sudo systemctl start streamtgbot.service`
+Start streamtgbot: `sudo systemctl start streamtgbot`
 
-If you want to Stop streamtgbot.service: `sudo systemctl stop streamtgbot.service`
+If you want to Stop streamtgbot: `sudo systemctl stop streamtgbot`
 
-If you want to Restart streamtgbot.service: `sudo systemctl restart streamtgbot.service`
+If you want to Restart streamtgbot: `sudo systemctl restart streamtgbot`
 
-If you want to Disable streamtgbot.service, stop the bot first with the stop command, then: `sudo systemctl disable streamtgbot.service`
+If you want to Disable streamtgbot, stop the bot first with the stop command, then: `sudo systemctl disable streamtgbot`
 
 ## Updating
 
