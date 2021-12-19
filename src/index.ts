@@ -4,7 +4,7 @@ import startBot from "./telegram/startBot.js";
 import sendMessage from "./telegram/sendMessage.js";
 import writeToFile from "./telegram/writeToFile.js";
 import constructDownstreamResponse from "./lnd/constructDownstreamResponse.js";
-import verifyConnection from "./lnd/verifyConnection.js";
+import verifyConnection from "./auth/verifyConnection.js";
 
 const connectionVerification = await verifyConnection();
 if (connectionVerification == "Connection Successful") {

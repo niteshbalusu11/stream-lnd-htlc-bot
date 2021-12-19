@@ -12,6 +12,7 @@ const startBot = async () => {
     await bot.api.setMyCommands([
         { command: "start", description: "Start the bot" },
     ]);
+    bot.catch((err) => console.error(err));
     bot.start();
     let chatID;
     bot.command("start", async (ctx) => {

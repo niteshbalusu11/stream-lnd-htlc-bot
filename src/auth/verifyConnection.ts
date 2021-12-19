@@ -1,4 +1,4 @@
-import { lnd } from "../auth/authentication.js";
+import { lnd } from "./authentication.js";
 import { getWalletInfo } from "lightning";
 
 const verifyConnection = async () => {

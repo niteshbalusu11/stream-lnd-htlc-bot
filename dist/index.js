@@ -4,7 +4,7 @@ import startBot from "./telegram/startBot.js";
 import sendMessage from "./telegram/sendMessage.js";
 import writeToFile from "./telegram/writeToFile.js";
 import constructDownstreamResponse from "./lnd/constructDownstreamResponse.js";
-import verifyConnection from "./lnd/verifyConnection.js";
+import verifyConnection from "./auth/verifyConnection.js";
 const connectionVerification = await verifyConnection();
 if (connectionVerification == "Connection Successful") {
     console.log("Connection Successful");
@@ -31,5 +31,10 @@ if (connectionVerification == "Connection Successful") {
             const downStreamresponse = await constructDownstreamResponse(forward);
             writeToFile(downStreamresponse);
         }
+    });
+    sub.once("error", (err) => {
+        // Terminate subscription and restart after a delay
+        sub.removeAllListeners();
+        console.error(err);
     });
 }
