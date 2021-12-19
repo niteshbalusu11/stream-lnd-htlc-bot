@@ -38,4 +38,11 @@ if (connectionVerification == "Connection Successful") {
       writeToFile(downStreamresponse);
     }
   });
+
+  sub.once("error", (err) => {
+    // Terminate subscription and restart after a delay
+    sub.removeAllListeners();
+
+    console.error(err);
+  });
 }
