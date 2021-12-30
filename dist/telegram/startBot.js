@@ -1,6 +1,7 @@
 import { Bot } from "grammy";
 import * as dotenv from "dotenv";
 import data from "./parseJSON.js";
+import { appendFileSync, readFileSync } from "fs";
 dotenv.config({ path: ".env.local" });
 const startBot = async () => {
     let apiKey = process.env.API_KEY;
@@ -20,10 +21,18 @@ const startBot = async () => {
             throw new Error("404-NeedUserID");
         }
         else {
-            ctx.replyWithChatAction("typing");
-            chatID = ctx.from.id;
-            process.env.CHAT_ID = chatID.toString();
-            bot.api.sendMessage(chatID, data.bot_is_connected);
+            try {
+                const findString = readFileSync(".env.local");
+                if (!findString.includes("CHAT_ID=")) {
+                    appendFileSync(".env.local", `\nCHAT_ID="${ctx.from.id}"`);
+                }
+                chatID = !!process.env.CHAT_ID ? process.env.CHAT_ID : ctx.from.id;
+                ctx.replyWithChatAction("typing");
+                bot.api.sendMessage(chatID, data.bot_is_connected);
+            }
+            catch (err) {
+                console.error(err);
+            }
         }
     });
 };
