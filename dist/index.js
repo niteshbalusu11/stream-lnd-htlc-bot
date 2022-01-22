@@ -9,8 +9,35 @@ const connectionVerification = await verifyConnection();
 if (connectionVerification == "Connection Successful") {
     console.log("Connection Successful");
     const sub = subscribeToForwards({ lnd });
-    await startBot();
-    sub.on("forward", async (forward) => {
+    let logonly = process.env.LOG_TO_FILE_ONLY;
+    if(logonly) {
+	    sub.on("forward", async (forward) => {
+		if (!forward ||
+		    forward.external_failure === "INCORRECT_OR_UNKNOWN_PAYMENT_DETAILS" ||
+		    forward.internal_failure === "UNKNOWN_INVOICE" ||
+		    forward.is_confirmed ||
+		    forward.in_channel === undefined ||
+		    !forward.in_channel ||
+		    forward.out_channel === undefined ||
+		    !forward.out_channel) {
+		    return;
+		}
+		else if (forward.external_failure === "TEMPORARY_CHANNEL_FAILURE") {
+		    const downStreamresponse = await constructDownstreamResponse(forward);
+		    writeToFile(downStreamresponse);
+		}
+		else if (forward.internal_failure === "" ||
+		    forward.internal_failure === undefined) {
+		}
+	    });
+	    sub.once("error", (err) => {
+		// Terminate subscription and restart after a delay
+		sub.removeAllListeners();
+		console.error(err);
+	    });
+    } else {
+        await startBot();
+    	sub.on("forward", async (forward) => {
         if (!forward ||
             forward.external_failure === "INCORRECT_OR_UNKNOWN_PAYMENT_DETAILS" ||
             forward.internal_failure === "UNKNOWN_INVOICE" ||
@@ -31,10 +58,11 @@ if (connectionVerification == "Connection Successful") {
             const downStreamresponse = await constructDownstreamResponse(forward);
             writeToFile(downStreamresponse);
         }
-    });
-    sub.once("error", (err) => {
-        // Terminate subscription and restart after a delay
-        sub.removeAllListeners();
-        console.error(err);
-    });
+	});
+	    sub.once("error", (err) => {
+		// Terminate subscription and restart after a delay
+		sub.removeAllListeners();
+		console.error(err);
+	});
+    }
 }
