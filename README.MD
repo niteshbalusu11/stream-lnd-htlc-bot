@@ -1,4 +1,4 @@
-# stream-lnd-htlcs
+# stream-lnd-htlcs (Not maintained anymore)
 
 Streams temporary channel failures to telegram bot using Telegram API (Grammy), stream data comes from HTLC stream gRPC API from LND. Tempoary Channel Failure data is parsed and forwarded to Telegram, all other failures are written in JSON format to failurelogs.json file.
 
